@@ -29,19 +29,5 @@ public interface MysqlRepo extends CrudRepository<Users, Long> {
     @Transactional
     Optional<Users> findByID(int id);
 
-//    public Optional<Users> get(int id) throws EmptyResultDataAccessException {
-//        return Optional.ofNullable(jdbcTemplate.queryForObject(
-//                "select * from users where id = ?",
-//                new Object[]{id},
-//                (rs, rowNum) -> {
-//                    Users users = new Users();
-//                    users.setId(rs.getInt("userid"));
-//                    users.setFirstname(rs.getString("firstname"));
-//                    users.setLastname((rs.getString("lastname")));
-//                    users.setEmail(rs.getString("email"));
-//                    return users;
-//                }
-//        ));
-//    }
 
 }

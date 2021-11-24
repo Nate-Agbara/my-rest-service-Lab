@@ -4,6 +4,7 @@ package com.troubleshooter.helper.model;
 
 //import com.sun.istack.NotNull;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Data
 public class Users {
 
     @Id
@@ -40,45 +42,14 @@ public class Users {
         this.email = email;
     }
 
-    @Override
-    public String toString(){
-        return "{"+
-                "\"id\":"+ "\""+this.getId()+"\""+
-                ", \"firstname\":"+ "\""+this.getFirstname()+"\""+
-                ", \"lastname\":" + "\""+this.getLastname()+"\""+
-                ", \"email\":" + "\""+this.getEmail()+"\""+
-                "}";
-    }
+//    @Override
+//    public String toString(){
+//        return "{"+
+//                "\"id\":"+ "\""+this.getId()+"\""+
+//                ", \"firstname\":"+ "\""+this.getFirstname()+"\""+
+//                ", \"lastname\":" + "\""+this.getLastname()+"\""+
+//                ", \"email\":" + "\""+this.getEmail()+"\""+
+//                "}";
+//    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

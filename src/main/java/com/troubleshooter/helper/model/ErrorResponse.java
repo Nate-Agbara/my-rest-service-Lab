@@ -2,9 +2,11 @@ package com.troubleshooter.helper.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 
+@Data
 @ApiModel(description = "Error Response model")
 public class ErrorResponse implements Serializable {
 
@@ -17,27 +19,4 @@ public class ErrorResponse implements Serializable {
     @ApiModelProperty(notes = "Message", name = "message", value = "Invalid field")
     private String message;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
