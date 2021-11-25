@@ -6,10 +6,7 @@ package com.troubleshooter.helper.model;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -31,25 +28,5 @@ public class Users {
     //@NotNull(message = "Email cannot be null")
     @ApiModelProperty(notes = "email of the user", name = "id", required = true, value = "johndoe@example.com")
     private String email;
-
-    public Users() {
-    }
-
-    public Users(int id, String firstname, String lastname, String email) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-    }
-
-//    @Override
-//    public String toString(){
-//        return "{"+
-//                "\"id\":"+ "\""+this.getId()+"\""+
-//                ", \"firstname\":"+ "\""+this.getFirstname()+"\""+
-//                ", \"lastname\":" + "\""+this.getLastname()+"\""+
-//                ", \"email\":" + "\""+this.getEmail()+"\""+
-//                "}";
-//    }
 
 }

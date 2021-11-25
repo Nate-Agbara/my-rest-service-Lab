@@ -2,11 +2,14 @@ package com.troubleshooter.helper.controller;
 
 
 import com.troubleshooter.helper.model.ErrorResponse;
+import com.troubleshooter.helper.model.SuccessResponse;
 import com.troubleshooter.helper.model.Users;
 import com.troubleshooter.helper.service.MysqlService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +41,14 @@ public class HelperController {
     public ResponseEntity<?> postUser(@RequestBody Users users){
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        ErrorResponse errorResponse;
         long submitResponse = mysqlService.submit(users.getFirstname(), users.getLastname(), users.getEmail());
         log.info("Response from database insert: "+submitResponse);
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(200);
-        errorResponse.setStatus("00");
-        errorResponse.setMessage("SUCCESS");
+        if(submitResponse == 0){
+             errorResponse = new ErrorResponse(200, "01", "NOT SUCCESSFUL");
+        }else{
+             errorResponse = new ErrorResponse(200, "00", "SUCCESS");
+        }
         return new ResponseEntity<>(errorResponse, responseHeaders, HttpStatus.OK);
 
     }
@@ -70,10 +75,17 @@ public class HelperController {
     })
     @RequestMapping("/fetch/all")
     @ResponseBody
-    public List<Users> get() {
+    public ResponseEntity<?> get() {
+        JSONObject responsemsg = new JSONObject();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         List<Users> users = mysqlService.returnUsers();
+        responsemsg.put("status", "00");
+        responsemsg.put("message", "SUCCESS");
+        responsemsg.put("Data", users);
         log.info(users.toString());
-        return users;
+        log.info(responsemsg.toString());
+        return new ResponseEntity<>(responsemsg.toString(), responseHeaders, HttpStatus.OK);
     }
 
 }

@@ -36,7 +36,7 @@ public class MysqlServiceImpl implements MysqlService {
     public Optional<Users> findByID(int id)  {
           return Optional.ofNullable(jdbcTemplate.queryForObject(
                 "select * from users where id = ?",
-                new Object[]{id},
+               // new Object[]{id},
                 (rs, rowNum) -> {
                     Users users = new Users();
                     users.setId(rs.getInt("id"));
@@ -45,8 +45,8 @@ public class MysqlServiceImpl implements MysqlService {
                     users.setEmail(rs.getString("email"));
                     return users;
                 }
-        ));
-          //.orElseThrow(throw  EmptyResultDataAccessException::new);
+        ,id));
+          //.orElseThrow(throw  EmptyResultDataAccessException::new);'
 
     }
 
@@ -54,7 +54,7 @@ public class MysqlServiceImpl implements MysqlService {
     public List<Users> returnUsers(){
         return jdbcTemplate.query(
                 "select * from users",
-                new Object[]{},
+                //new Object[]{},
                 (rs, rowNum) -> {
                     Users users = new Users();
                     users.setId(rs.getInt("id"));

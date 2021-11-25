@@ -5,12 +5,14 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.io.Serializable;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
-@ApiModel(description = "Error Response model")
-public class ErrorResponse implements Serializable {
+@ApiModel(description = "Success Response model")
+public class SuccessResponse {
 
     @ApiModelProperty(notes = "Error code", name = "code", value = "200")
     private int code;
